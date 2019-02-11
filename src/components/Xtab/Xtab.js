@@ -2,7 +2,7 @@ import React, {
     Component
 } from "react";
 import "./Xtab.js";
-import "../../assets/app.css";
+import "../../access/app.css";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 

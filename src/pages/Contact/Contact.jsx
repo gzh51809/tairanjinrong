@@ -2,7 +2,7 @@ import React, {
     Component
 } from "react";
 import "./Contact.jsx";
-import "../../assets/webStatistics.css";
+// import "../../access/webStatistics.css";
 import Xtips from "../../components/Xtips/Xtips.js";
 import Xtab from "../../components/Xtab/Xtab.js";
 import Xplans from '../../components/Xplans/Xplans.jsx';
@@ -19,10 +19,11 @@ class Contact extends Component {
 
     render() {
         return(
-            <div>
+            <div className="trc-product-list-wrap">
                 <Xtips/>
                 <div className="swiper-subassembly">
                     <Xtab/>
+                    <Route path="/terran/contact/" exact component={Xplans} />
                     <Route path="/terran/contact/plans" component={Xplans} />
                     <Route path="/terran/contact/bulk" component={Xbulk} />
                     <Route path="/terran/contact/transfer" component={Xtransfer} />

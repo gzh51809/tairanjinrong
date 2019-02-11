@@ -2,7 +2,7 @@ import React, {
     Component
 } from "react";
 import "./Xtips.js";
-import "../../assets/app.css";
+import "../../access/app.css";
 import { connect } from 'react-redux';
 
 class Xtips extends Component {

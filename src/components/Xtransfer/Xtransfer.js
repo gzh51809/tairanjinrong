@@ -2,7 +2,7 @@ import React, {
     Component
 } from "react";
 import "./Xtransfer.js";
-import "../../assets/app.css";
+import "../../access/app.css";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import store from "../../libs/store.js";
@@ -37,7 +37,12 @@ class Xtransfer extends Component {
                                 {(()=>{
                                     return this.state.list.map((item,index)=>{
                                         return(
-                                            <li className="loan-pitem  clearfix"><Link className="block-link" to="/"></Link>
+                                            <li className="loan-pitem  clearfix" key={index}>
+                                            <Link className="block-link" to={{
+										        pathname: `/details/xiangmujieshao/${item.id}`
+										        
+										        }}>
+                                            </Link>
                                             <div className="row clearfix">
                                                 <div className="pro-name col-md-24 clearfix">
                                                     <span className="fs-14 c-666">{item.loanTitle}</span>

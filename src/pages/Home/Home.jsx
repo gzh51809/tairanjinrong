@@ -23,6 +23,7 @@ class Home extends Component {
                 <Xroll/>
                 <Xbanner/>
                 <Xplan/>
+                <div className="index-foot-bar"> </div>
             </div>
         )
     }

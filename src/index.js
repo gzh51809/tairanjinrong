@@ -1,25 +1,20 @@
 import React from 'react';
-// axios
-import axios from 'axios';
-
-
-// 虚拟DOM
 import ReactDOM from 'react-dom';
-
-
-// 路由功能
 import { HashRouter as Router, Route , Redirect} from "react-router-dom";
-
-// 状态管理
+import './index.css';
 import {Provider, connect} from 'react-redux';
 import {createStore} from 'redux';
-import './index.css';
-import './assets/app.css';
-// 子组件 复用组件
-// 页面组件 容器组件
-import Terran from './pages/Terran/Terran.jsx';
+import axios from 'axios';
 
-import Detail from './pages/Detail/Detail.jsx';
+import Signin from './pages/Signin/signin.jsx';
+import Login from './pages/Login/Login.jsx';
+import Terran from './pages/Terran/Terran.jsx';
+import Profile from './pages/Profile/Profile.jsx';
+import Fund from './pages/Fund/Fund.jsx';
+import Details from './pages/Details/Details.jsx';
+import Xshenfen from './components/Xshenfen/Xshenfen.jsx';
+import Record from './pages/Record/Record.jsx';
+
 import * as serviceWorker from './serviceWorker';
 React.axios = axios;
 //创建仓库
@@ -47,20 +42,26 @@ const store = createStore(function(state={
     }
 });
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <div>
-                <Route path="/terran/" component={Terran} />
-                <Route path="/detail/:id/:id" component={Detail} />
-            </div>
-        </Router>
-        </Provider>
-    , 
-    document.getElementById('root')
-);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+ReactDOM.render(
+	<Provider store={store}>
+	<Router>
+		<div >
+			<Route path="/" exact component={Terran} />
+			<Route path="/signin" component={Signin} />
+			<Route path="/login" component={Login} />
+			<Route path="/terran/" component={Terran} />
+			<Route path="/profile" component={Profile} />
+			<Route path="/fund" component={Fund} />
+			<Route path="/Xshenfen" component={Xshenfen} />
+			<Route path="/record/" component={Record} />
+			<Route path="/details/" component={Details} />
+
+		</div>
+	</Router>
+	</Provider>
+	,
+	document.getElementById('root'));
+
+
 serviceWorker.unregister();

@@ -2,9 +2,9 @@ import React, {
     Component
 } from "react";
 import "./Xroll.js";
-import "../../assets/app.css";
+import "../../access/app.css";
 import { Carousel } from 'antd';
-import "../../assets/antd.css";
+import "../../access/antd.css";
 import { connect } from 'react-redux';
 import{Link} from 'react-router-dom';
 class Xroll extends Component {
@@ -59,6 +59,11 @@ class Xroll extends Component {
         )
     }
     // js
+        // return{
+        //    var swiper = new Swiper('.swiper-container', {
+        //       direction: 'vertical',
+        //     }) 
+        // }
 }
 
 export default connect((state)=>{

@@ -2,10 +2,9 @@ import React, {
     Component
 } from "react";
 import "./Xplans.jsx";
-import "../../assets/app.css";
-import "./Xplans.css";
+import "../../access/app.css";
 import { Link } from "react-router-dom";
-import store from "../../libs/store.js";
+//import store from "../../libs/store.js";
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class Xplans extends Component {
@@ -14,15 +13,16 @@ class Xplans extends Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
             list: [],
-            isLoadingMore: false
+            isShow:false
         }
     }
     loadMore() {
         console.log(this)
 
         React.axios.get("plans.json", {
+        	
         }).then((response) => {
-            console.log(response.data.list);
+            console.log(typeof(response.data.list[0].statusStr));
             this.setState({
                 list: this.state.list.concat(response.data.list)
             })
@@ -41,8 +41,11 @@ class Xplans extends Component {
                             {(()=>{
                                 return this.state.list.map((item,index)=>{
                                     return (
-                                        <li className="plan-pitem false  clearfix">
-                                            <Link className="block-link" to="/"></Link>
+                                        <li className={item.statusStr===0?"plan-pitem false  clearfix":"plan-pitem finish  clearfix"} key={index}>
+                                            <Link className="block-link" to={{
+										        pathname: `/details/xiangmujieshao/${item.id}`
+										        
+										        }}></Link>
                                             <div className="row clearfix">
                                                 <div className="pro-name col-md-24 clearfix">
                                                     <span className="fs-14 c-999">{item.name}</span>
@@ -72,7 +75,7 @@ class Xplans extends Component {
                                                 </div>
                                                 <div className="col-md-8 txtr">
                                                     <div className="pro-val">
-                                                        <Link className="purchase-btn" to="/detail">抢购</Link>
+                                                        <Link className={item.statusStr===0?"purchase-btn":"sold-btn"} to="/detail">{item.buttonName}</Link>
                                                     </div>
                                                     <label className="pro-lab">剩余<em className="c-35">{((item.availAmount)/10000).toFixed(2)}万</em></label>
                                                 </div>
@@ -83,7 +86,7 @@ class Xplans extends Component {
                             })()}
                             </ul>
                             <div className="load-more" ref="wrapper"> 
-                                <div className="drop-statu-box" onClick={this.loadMoreFn.bind(this)}>
+                                <div className="drop-statu-box" onClick={this.loadMore.bind(this)}>
                                     下拉加载更多
                                 </div> 
                             </div>
@@ -93,13 +96,17 @@ class Xplans extends Component {
             </div>
         )
     }
+    
 
     //下拉加载更多的方法
     componentDidMount() {
+    	this.loadMore()
+    	
+    	
         // 使用滚动时自动加载更多
-        const loadMoreFn = this.props.loadMoreFn;
-        const wrapper = this.refs.wrapper;
-        const that = this;
+        const loadMoreFn = this.loadMoreFn
+        const that=this
+        const wrapper = this.refs.wrapper
         let timeoutId
         function callback() {
             const top = wrapper.getBoundingClientRect().top
@@ -110,7 +117,7 @@ class Xplans extends Component {
             }
         }
         window.addEventListener('scroll', function () {
-            if (this.props.isLoadingMore) {
+            if (this.props.isShow) {
                 return
             }
             if (timeoutId) {
@@ -118,13 +125,14 @@ class Xplans extends Component {
             }
             timeoutId = setTimeout(callback, 50)
         }.bind(this), false);
+       
     }
-
     loadMoreFn(that){
-        that.setState({
-            // console.log(566)
-        })
+    	
+    	that.loadMore()
     }
+    
+   
 
     // js
 }
