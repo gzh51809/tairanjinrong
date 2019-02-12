@@ -15,12 +15,10 @@ class Xplan extends Component  {
         }
     }
     loadMore() {
-    	React.axios.get("home.json",{ }).then((response) => {
-            console.log(response.data.list);
+    	React.axios.get("proxy/trc_bjcg/plan/list?planType=4%2C5&pageSize=4").then((response) => {
+            console.log(response.data.data.list);
             this.setState({
-            	list:this.state.list.concat(response.data.list)
-            	
-            	
+            	list:this.state.list.concat(response.data.data.list)
             })
             
         }).catch(function (error) {
