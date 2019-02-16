@@ -1,6 +1,7 @@
 {
   "name": "tairanjinrong",
   "version": "0.1.0",
+  "homepage": "https://gzh51809.github.io/tairanjinrong",
   "private": true,
   "dependencies": {
     "react": "^16.6.3",
@@ -13,7 +14,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -28,7 +31,8 @@
     "antd": "^3.10.8",
     "axios": "^0.18.0",
     "react-addons-pure-render-mixin": "^15.6.2",
-    "react-redux": "^5.1.1"
+    "react-redux": "^5.1.1",
+    "gh-pages": "^2.0.1"
   },
   "proxy":"https://jrwx.trc.com"
 }
